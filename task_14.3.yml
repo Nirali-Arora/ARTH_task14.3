@@ -1,0 +1,13 @@
+ - hosts : all
+   vars_files :
+     - "{{ ansible_facts['distribution'] }}.yml" 
+   tasks :       
+     - package:
+         name : "{{ package }}"
+         state : present
+     - copy : 
+         content: "this is {{package}} os..........."
+         dest : "/var/www/html/index.html"
+     - service :
+         name : "{{ package }}"
+         state : started
